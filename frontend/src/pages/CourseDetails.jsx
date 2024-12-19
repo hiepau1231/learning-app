@@ -197,7 +197,61 @@ function CourseDetails() {
                                     <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">
                                         {courseName}
                                     </p>
-                                    <p className="text-richblack-200">{courseDescription}</p>
+
+                                    {/* Mục tiêu bài học */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Mục tiêu bài học</p>
+                                        <div className="flex flex-col gap-2">
+                                            {whatYouWillLearn?.split("\n").map((item, index) => (
+                                                <p key={index} className="flex gap-2">
+                                                    <MdOutlineVerified className="text-caribbeangreen-300" />
+                                                    {item}
+                                                </p>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Tiến trình học */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Tiến trình học</p>
+                                        <div className="flex items-center gap-2">
+                                            <div className="h-2 w-full bg-richblack-700 rounded-full">
+                                                <div 
+                                                    className="h-full bg-yellow-50 rounded-full"
+                                                    style={{
+                                                        width: `${response?.data?.completedVideos?.length / totalNoOfLectures * 100 || 0}%`
+                                                    }}
+                                                ></div>
+                                            </div>
+                                            <p className="text-sm">
+                                                {response?.data?.completedVideos?.length || 0}/{totalNoOfLectures} bài học
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Tóm tắt nội dung bài học */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Tóm tắt nội dung bài học</p>
+                                        <p className="text-richblack-200">{courseDescription}</p>
+                                    </div>
+
+                                    {/* Giảng viên */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Giảng viên</p>
+                                        <div className="flex items-center gap-4">
+                                            <Img 
+                                                src={instructor?.image}
+                                                alt={instructor?.firstName}
+                                                className="h-14 w-14 rounded-full object-cover"
+                                            />
+                                            <div>
+                                                <p className="font-semibold">
+                                                    {instructor?.firstName} {instructor?.lastName}
+                                                </p>
+                                                <p className="text-sm text-richblack-300">{instructor?.email}</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     {/* Course Content */}
                                     <div className="flex flex-col gap-3">
