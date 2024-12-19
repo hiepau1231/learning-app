@@ -198,9 +198,30 @@ function CourseDetails() {
                                         {courseName}
                                     </p>
 
-                                    {/* Mục tiêu bài học */}
+                                    {/* Nội dung khóa học */}
                                     <div className="flex flex-col gap-3">
-                                        <p className="text-2xl font-semibold">Mục tiêu bài học</p>
+                                        <p className="text-2xl font-semibold">Nội dung khóa học</p>
+                                        <div className="flex flex-col gap-2">
+                                            {courseContent?.map((course, index) => (
+                                                <CourseAccordionBar
+                                                    key={index}
+                                                    course={course}
+                                                    isActive={isActive}
+                                                    handleActive={handleActive}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Mô tả khóa học */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Mô tả khóa học</p>
+                                        <p className="text-richblack-200">{courseDescription}</p>
+                                    </div>
+
+                                    {/* Lợi ích khóa học */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Lợi ích khóa học</p>
                                         <div className="flex flex-col gap-2">
                                             {whatYouWillLearn?.split("\n").map((item, index) => (
                                                 <p key={index} className="flex gap-2">
@@ -208,6 +229,24 @@ function CourseDetails() {
                                                     {item}
                                                 </p>
                                             ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Giảng viên */}
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-2xl font-semibold">Giảng viên</p>
+                                        <div className="flex items-center gap-4">
+                                            <Img 
+                                                src={instructor?.image}
+                                                alt={instructor?.firstName}
+                                                className="h-14 w-14 rounded-full object-cover"
+                                            />
+                                            <div>
+                                                <p className="font-semibold">
+                                                    {instructor?.firstName} {instructor?.lastName}
+                                                </p>
+                                                <p className="text-sm text-richblack-300">{instructor?.email}</p>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -229,76 +268,19 @@ function CourseDetails() {
                                         </div>
                                     </div>
 
-                                    {/* Tóm tắt nội dung bài học */}
+                                    {/* Thẻ */}
                                     <div className="flex flex-col gap-3">
-                                        <p className="text-2xl font-semibold">Tóm tắt nội dung bài học</p>
-                                        <p className="text-richblack-200">{courseDescription}</p>
-                                    </div>
-
-                                    {/* Giảng viên */}
-                                    <div className="flex flex-col gap-3">
-                                        <p className="text-2xl font-semibold">Giảng viên</p>
-                                        <div className="flex items-center gap-4">
-                                            <Img 
-                                                src={instructor?.image}
-                                                alt={instructor?.firstName}
-                                                className="h-14 w-14 rounded-full object-cover"
-                                            />
-                                            <div>
-                                                <p className="font-semibold">
-                                                    {instructor?.firstName} {instructor?.lastName}
-                                                </p>
-                                                <p className="text-sm text-richblack-300">{instructor?.email}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Course Content */}
-                                    <div className="flex flex-col gap-3">
-                                        <p className="text-2xl font-semibold">Nội dung khóa học</p>
-                                        <div className="flex flex-col gap-2">
-                                            {courseContent?.map((course, index) => (
-                                                <CourseAccordionBar
+                                        <p className="text-2xl font-semibold">Thẻ</p>
+                                        <div className="flex gap-2">
+                                            {tag?.map((item, index) => (
+                                                <span
                                                     key={index}
-                                                    course={course}
-                                                    isActive={isActive}
-                                                    handleActive={handleActive}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* What you'll learn */}
-                                    <div className="flex flex-col gap-3">
-                                        <p className="text-2xl font-semibold">Những thứ bạn sẽ học được</p>
-                                        <div className="flex flex-col gap-2">
-                                            {whatYouWillLearn?.split("\n").map((item, index) => (
-                                                <p key={index} className="flex gap-2">
-                                                    <MdOutlineVerified className="text-caribbeangreen-300" />
+                                                    className="bg-richblack-700 px-3 py-1 rounded-full text-sm"
+                                                >
                                                     {item}
-                                                </p>
+                                                </span>
                                             ))}
                                         </div>
-                                    </div>
-
-                                    {/* Author info */}
-                                    <p className="capitalize">
-                                        Tạo bởi{" "}
-                                        <span className="font-semibold underline">
-                                            {instructor.firstName} {instructor.lastName}
-                                        </span>
-                                    </p>
-
-                                    {/* Tags */}
-                                    <div className="flex gap-2">
-                                        {tag?.map((item, index) => (
-                                            <span
-                                                key={index}
-                                                className="bg-richblack-700 px-3 py-1 rounded-full text-sm"
-                                            >
-                                                {item}
-                                            </span>
-                                        ))}
                                     </div>
                                 </div>
 
